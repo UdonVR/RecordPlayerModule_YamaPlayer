@@ -1,0 +1,12 @@
+{
+  "name": "com.udonvr.recordplayer.yamaplayer",
+  "displayName": "UdonVR - RecordPlayer - YamaPlayer Module",
+  "version": "1.0.0",
+  "unity": "2022.3",
+  "description": "YamaPlayer hook for UdonVR's Record Player.",
+  "author": {
+    "name": "UdonVR",
+    "email": "admin@udonvr.com",
+    "url": "https://udonvr.com"
+  }
+}
