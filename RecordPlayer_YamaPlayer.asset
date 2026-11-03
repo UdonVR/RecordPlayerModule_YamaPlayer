@@ -176,7 +176,7 @@ MonoBehaviour:
       Data: 10|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: UdonVR.RecordPlayer.Yamaplayer.RecordPlayer_YamaPlayer_Listener, Assembly-CSharp
+      Data: UdonVR.RecordPlayer.Yamaplayer.RecordPlayer_YamaPlayer_Listener, com.udonvr.recordplayer.yamaplayer
     - Name: 
       Entry: 8
       Data: 

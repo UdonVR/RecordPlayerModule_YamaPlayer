@@ -70,10 +70,10 @@ namespace UdonVR.RecordPlayer.Yamaplayer
             }
         }
         
-
         public override void _loopCurrentUrl()
         {
-            
+            yamaController.SetTime(0f);
+            yamaController.Play();
         }
 
         public override void _SetVolume(float _volume)

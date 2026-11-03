@@ -13,10 +13,17 @@ namespace UdonVR.RecordPlayer.Yamaplayer
     {
         public RecordPlayer_YamaPlayer recordPlayerProxy;
 
+        private void Start()
+        {
+            recordPlayerProxy.yamaController.AddListener(this);
+            recordPlayerProxy.recordPlayer.volumeSlider._Internal_UpdateValue(recordPlayerProxy._GetVolume(), false);
+        }
+        
         #region Core Events
 
         public override void AfterVideoReady()
         {
+            recordPlayerProxy.recordPlayer.volumeSlider._Internal_UpdateValue(recordPlayerProxy._GetVolume(), false);
         }
 
         public override void AfterVideoStarted()
@@ -25,6 +32,7 @@ namespace UdonVR.RecordPlayer.Yamaplayer
 
         public override void AfterVideoErrorOccurred(VideoError videoError)
         {
+            recordPlayerProxy._PlaybackEnded();
         }
 
         public override void AfterVideoLooped()
@@ -41,10 +49,12 @@ namespace UdonVR.RecordPlayer.Yamaplayer
 
         public override void AfterVideoEnded()
         {
+            recordPlayerProxy._PlaybackEnded();
         }
 
         public override void AfterVideoStopped()
         {
+            recordPlayerProxy._End();
         }
 
         public override void AfterVideoReloaded()
@@ -98,6 +108,7 @@ namespace UdonVR.RecordPlayer.Yamaplayer
 
         public override void AfterVolumeChanged(float volume)
         {
+            recordPlayerProxy.recordPlayer.volumeSlider._Internal_UpdateValue(volume, false);
         }
 
         public override void AfterMuteChanged(bool mute)
@@ -130,6 +141,7 @@ namespace UdonVR.RecordPlayer.Yamaplayer
 
         public override void AfterTrackLoaded()
         {
+            recordPlayerProxy._OnVideoLoad();
         }
 
         public override void AfterOwnerChanged()
