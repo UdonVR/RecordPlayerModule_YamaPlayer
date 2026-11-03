@@ -12,12 +12,6 @@ namespace UdonVR.RecordPlayer.Yamaplayer
     public class RecordPlayer_YamaPlayer_Listener : YamaPlayerListener
     {
         public RecordPlayer_YamaPlayer recordPlayerProxy;
-
-        private void Start()
-        {
-            recordPlayerProxy.yamaController.AddListener(this);
-            recordPlayerProxy.recordPlayer.volumeSlider._Internal_UpdateValue(recordPlayerProxy._GetVolume(), false);
-        }
         
         #region Core Events
 
@@ -28,11 +22,12 @@ namespace UdonVR.RecordPlayer.Yamaplayer
 
         public override void AfterVideoStarted()
         {
+            recordPlayerProxy._OnYamaVideoStarted();
         }
 
         public override void AfterVideoErrorOccurred(VideoError videoError)
         {
-            recordPlayerProxy._PlaybackEnded();
+            recordPlayerProxy._OnYamaVideoError(videoError);
         }
 
         public override void AfterVideoLooped()
@@ -49,12 +44,12 @@ namespace UdonVR.RecordPlayer.Yamaplayer
 
         public override void AfterVideoEnded()
         {
-            recordPlayerProxy._PlaybackEnded();
+            recordPlayerProxy._OnYamaVideoEnded();
         }
 
         public override void AfterVideoStopped()
         {
-            recordPlayerProxy._End();
+            recordPlayerProxy._OnYamaVideoStopped();
         }
 
         public override void AfterVideoReloaded()
@@ -141,7 +136,7 @@ namespace UdonVR.RecordPlayer.Yamaplayer
 
         public override void AfterTrackLoaded()
         {
-            recordPlayerProxy._OnVideoLoad();
+            recordPlayerProxy._OnYamaTrackLoaded();
         }
 
         public override void AfterOwnerChanged()
